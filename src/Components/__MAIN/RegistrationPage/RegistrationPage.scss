@@ -1,6 +1,8 @@
 @import '../../__STYLE_SCSS/Sizes';
+@import '../../__STYLE_SCSS/Themes';
 
-#login-page{
+#registration-page{
     @include fullSize();
     position: relative;
+    
 }

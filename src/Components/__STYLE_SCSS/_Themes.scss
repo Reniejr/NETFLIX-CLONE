@@ -1,0 +1,9 @@
+@import './Colors';
+@import './Compatibilities';
+
+@mixin primary-btn(){
+    @include borderRadius(3px);
+    background-color: $primary;
+    color: white;
+    border: none;
+}

@@ -3,7 +3,10 @@ import React, { PureComponent } from 'react'
 
 //FUNCTIONS IMPORTS
 import { getData } from '../../../Utilities/Fetch/fetch'
+
+//COMPONENTS IMPORTS
 import LoginForm from '../../LoginPage_SubComponents/LoginForm/LoginForm'
+import Background from '../../_GENERAL_SUBCOMP/Background/Background'
 
 //STYLE IMPORTS
 import './LoginPage.scss'
@@ -26,12 +29,7 @@ export default class LoginPage extends PureComponent {
     render() {
         return (
             <div id='login-page'>
-                <div className="img-bg">
-                    <img src="./assets/login-bg.jpg" alt=""/>
-                </div>
-                <div className="logo">
-                    <img src="" alt=""/>
-                </div>
+                <Background/>
                 <LoginForm/>
             </div>
         )

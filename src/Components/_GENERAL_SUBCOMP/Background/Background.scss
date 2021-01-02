@@ -1,0 +1,20 @@
+@import '../../__STYLE_SCSS/Sizes';
+
+.background-img{
+    @include fullSize();
+    position: absolute;
+    z-index: -1;
+    img{
+        @include fullSize();
+        filter: brightness(60%);
+        -webkit-filter: brightness(60%);
+    }
+    .logo{
+        width: 220px;
+        height: 80px;
+        background-color: white;
+        position: absolute;
+        top: 1rem;
+        left: 1rem;
+    }
+}

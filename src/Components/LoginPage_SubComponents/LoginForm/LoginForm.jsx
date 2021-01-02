@@ -1,5 +1,8 @@
 import React, { PureComponent } from 'react'
 
+//COMPONENTS
+import {Link} from 'react-router-dom'
+
 //STYLE
 import './LoginForm.scss'
 
@@ -20,7 +23,7 @@ export default class LoginForm extends PureComponent {
                 </div>
                 <div className="newAccount">
                     <span>New to StriveFlix?</span>
-                    <button>Sign up now</button>
+                    <Link to='/registration'>Sign up now</Link>
                 </div>
             </div>
         )

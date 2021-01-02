@@ -1,0 +1,53 @@
+@import '../../__STYLE_SCSS/Sizes';
+@import '../../__STYLE_SCSS/Themes';
+@import '../../__STYLE_SCSS/Positions';
+
+#step1{
+    @include fullSize();
+    position: relative;
+    #login{
+        @include primary-btn();
+        padding: .25rem .75rem;
+        position: absolute;
+        top: 1rem;
+        right: 3rem;
+        a{
+            text-decoration: none;
+            color: white;
+            font-weight: 600;
+        }
+    }
+    .email-submit{
+        @include absolutePosition(none, none, 10%, 50%, -50%, 0);
+        width: 70%;
+        h2, p{
+            width: 100%;
+            color: white;
+            text-align: center;
+        }
+        h2{
+            font-size: 3rem;
+            font-weight: 700;
+        }
+        p:nth-of-type(1){
+            font-size: 1.5rem;
+        }
+        p:nth-of-type(2){
+            font-size: 1rem;
+            font-weight: 600;
+        }
+        input{
+            width: 70%;
+            height: 50px;
+            padding: .5rem;
+        }
+        button{
+            @include primary-btn();
+            width: 30%;
+            height: 50px;
+            padding: 0.5rem;
+            text-transform: uppercase;
+            font-weight: 800;
+        }
+    }
+}
