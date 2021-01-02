@@ -1,0 +1,97 @@
+//IMPORTS
+@import '../../__STYLE_SCSS/Compatibilities';
+@import '../../__STYLE_SCSS/Sizes';
+@import '../../__STYLE_SCSS/Colors';
+@import '../../__STYLE_SCSS/Positions';
+
+@mixin inputSize(){
+    @include borderRadius(3px);
+    margin: .5rem 0;
+    padding: .5rem .75rem;
+    border: none;
+    font-size: .8rem;
+}
+
+.login-form{
+    @include borderRadius(3px);
+    @include absolutePosition(50%, 4rem, none, none, 0, -50%);
+    background-color:rgba($color: black, $alpha: .9);
+    width: 30%;
+    height: 70%;
+    padding: 2rem 3rem;
+    color: white;
+    display: flex;
+    flex-direction: column;
+
+    p{margin: 0;}
+
+    p:nth-of-type(1){
+        font-size: 1.25rem;
+        font-weight: 700;
+        margin-bottom: .5rem;
+        align-self: flex-start;
+    }
+
+    input, input[type=password]{
+        @include inputSize();
+        width: 100%;
+        background-color: rgba($color: white, $alpha: .3);
+        color: white
+    }
+
+    #sign-in{
+        @include inputSize();
+        width: 100%;
+        font-weight: 700;
+        color: white;
+        background-color: $primary;
+    }
+
+    .checkRemember{
+        width: 100%;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+
+        label, p{
+            font-size: .7rem;
+            font-weight: normal;
+            color: rgba($color: white, $alpha: .7);
+            margin: 0;
+            align-self: center;
+        }
+
+        .checkbox{
+            display: flex;
+            align-items: center;
+
+            input{
+                width: initial;
+                margin-right: .5rem;
+            }
+
+        }
+
+    }
+    .newAccount{
+        width: 100%;
+        display: flex;
+        align-items: center;
+
+        span, button{font-size: .7rem;}
+
+        span{
+            margin-right: .1rem;
+            color: rgba($color: white, $alpha: .7);
+        }
+
+        button{
+            background-color: transparent;
+            border: none;
+            color: white;
+            font-weight: 600;
+        }
+
+    }
+
+}

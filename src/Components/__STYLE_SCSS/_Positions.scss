@@ -1,0 +1,19 @@
+@mixin flexCentered($direction){
+    display: flex;
+    flex-direction: $direction;
+    justify-content: center;
+    align-items: center;
+}
+
+@mixin absolutePosition ($top, $right, $bottom, $left, $x-axis, $y-axis) {
+    position: absolute;
+    top: $top;
+    right: $right;
+    bottom: $bottom;
+    left: $left;
+    transform: translate($x-axis, $y-axis);
+    -webkit-transform: translate($x-axis, $y-axis);
+    -moz-transform: translate($x-axis, $y-axis);
+    -ms-transform: translate($x-axis, $y-axis);
+    -o-transform: translate($x-axis, $y-axis);
+}
