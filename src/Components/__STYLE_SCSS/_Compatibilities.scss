@@ -5,3 +5,11 @@
     -ms-border-radius: $radius;
     -o-border-radius: $radius;
 }
+
+@mixin translate($x_axis, $y_axis){
+    transform: translate($x_axis, $y_axis);
+    -webkit-transform: translate($x_axis, $y_axis);
+    -moz-transform: translate($x_axis, $y_axis);
+    -ms-transform: translate($x_axis, $y_axis);
+    -o-transform: translate($x_axis, $y_axis);
+}
