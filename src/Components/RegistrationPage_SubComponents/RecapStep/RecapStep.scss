@@ -1,0 +1,39 @@
+@import '../../__STYLE_SCSS/Colors';
+@import '../../__STYLE_SCSS/Themes';
+
+#recap{
+    .registration-layout{
+        .container{
+            h4{
+                font-weight: 700;
+            }
+            ul{
+                padding: 0;
+                margin: 0;
+                list-style: none;
+                margin: 1rem 0;
+                li{
+                    margin-bottom: 1rem;
+                    span{
+                        color: $primary;
+                        font-size: .9rem;
+                        font-weight: 700;
+                        text-transform: uppercase;
+                    }
+                    input{
+                        width: 100%;
+                        height: 3rem;
+                        border: 1px solid rgba($color: #000000, $alpha: .3);
+                    }
+                }
+            }
+            button{
+                @include primary-btn();
+                width: 100%;
+                height: 3rem;
+                text-transform: uppercase;
+                font-weight: 700;
+            }
+        }
+    }
+}

@@ -1,0 +1,43 @@
+@import '../../__STYLE_SCSS/Sizes';
+@import '../../__STYLE_SCSS/Positions';
+#accounts{
+    @include fullSize();
+    @include flexCentered(column);
+    background-color: black;
+    color: white;
+    h1{
+        font-weight: 500;
+        font-size: 3rem;
+        margin-bottom: 1rem;
+        letter-spacing: 1px
+    }
+    .accounts-container{
+        @include flexCentered(row);
+        margin-bottom: 3rem;
+        .no-accounts{
+            @include flexCentered(row);
+            p{
+                text-align: center;
+                margin: 0;
+            }
+            .create-account{
+                @include flexCentered(column);
+                margin: 20px;
+                .fa-plus-circle{
+                    font-size: 90px;
+                    color: rgba($color: white, $alpha: .5);
+                    margin-bottom: 1rem;
+                }
+            }
+        }
+    }
+    button{
+        padding: 0.5rem 1rem;
+        border: 1px solid rgba($color: white, $alpha: .5);
+        background-color: transparent;
+        font-size: 1rem;
+        color: rgba($color: white, $alpha: .5);
+        text-transform: uppercase;
+        letter-spacing: 2px;
+    }
+}

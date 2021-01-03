@@ -1,8 +1,8 @@
 import React, { PureComponent } from 'react'
-import {Container} from 'react-bootstrap'
+import {Link} from 'react-router-dom'
 
 //PERSONAL COMPONENTS IMPORTS
-import RegistrationLayout from '../_General_Subcomp/RegistrationLayout/RegistrationLayout'
+import {RegistrationLayout, Steps} from '../_General_Subcomp/RegistrationLayout/RegistrationLayout'
 
 //STYLE
 import './PasswordStep.scss'
@@ -12,19 +12,17 @@ export default class PasswordStep extends PureComponent {
         return (
             <div id='password-step'>
                 <RegistrationLayout>
-                    <Container>
-                        <span>Step </span>
-                        <span>1 </span>
-                        <span>Of </span>
-                        <span>3</span>
-                        <h3>Welcome! <br/>Joining Netflix is easy.</h3>
-                        <p>Enter your password and you'll be watching in no time</p>
+                    <Steps steps={[1, 3]}/>
+                    <h4>Welcome! <br/>Joining Netflix is easy.</h4>
+                    <p>Enter your password and you'll be watching in no time.</p>
+                    <div className="email">
                         <p>Email</p>
                         <p>Props Email</p>
-                        <input type="password" placeholder='Enter your password'/>
-                        <p>Forgot your password?</p>
-                        <button>Continue</button>
-                    </Container>
+                    </div>
+                    <input type="password" placeholder='Enter your password'/>
+                    <Link>Forgot your password?</Link>
+                    <br/>
+                    <button>Continue</button>
                 </RegistrationLayout>
             </div>
         )
