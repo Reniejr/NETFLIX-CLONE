@@ -1,0 +1,5 @@
+@import '../../__STYLE_SCSS/Sizes';
+
+#cinema-router{
+    @include fullSize();
+}

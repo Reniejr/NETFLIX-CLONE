@@ -1,0 +1,6 @@
+@import '../../__STYLE_SCSS/Sizes';
+
+#registration-router{
+    @include fullSize();
+    position: relative;
+}

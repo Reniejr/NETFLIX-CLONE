@@ -1,0 +1,7 @@
+@import '../../__STYLE_SCSS/Sizes';
+@import '../../__STYLE_SCSS/Positions';
+@import '../../__STYLE_SCSS/Compatibilities';
+#homepage{
+    @include fullSize();
+    background-color: black;
+}

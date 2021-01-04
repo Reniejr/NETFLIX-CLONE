@@ -13,3 +13,11 @@
     -ms-transform: translate($x_axis, $y_axis);
     -o-transform: translate($x_axis, $y_axis);
 }
+
+@mixin transition($property, $duration, $style){
+    transition: $property $duration $style;
+    -webkit-transition: $property $duration $style;
+    -moz-transition: $property $duration $style;
+    -ms-transition: $property $duration $style;
+    -o-transition: $property $duration $style;
+}
