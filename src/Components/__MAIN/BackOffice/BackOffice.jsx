@@ -1,11 +1,13 @@
 import React, { PureComponent } from 'react'
 
 //UTILITIES
-import {getOmdb, postData} from '../../../Utilities/Fetch/fetch'
+import {getData, getOmdb, postData} from '../../../Utilities/Fetch/fetch'
+import AddedList from '../../BackOffice_SubComponent/AddedList/AddedList'
 
 //PERSONAL COMPONENTS IMPORT
 import BackGallery from '../../BackOffice_SubComponent/BackGallery/BackGallery'
 import BackOfficeNav from '../../BackOffice_SubComponent/BackOffice_Navbar/BackOfficeNav'
+import MovieDetails from '../../BackOffice_SubComponent/MovieDetails/MovieDetails'
 
 //STYLE
 import './BackOffice.scss'
@@ -16,62 +18,86 @@ export default class BackOffice extends PureComponent {
         pageFetch : 1,
         movies : [],
         search : '',
-        moviesSelected:[]
+        moviesSelected:[],
+        selMovie:{},
+        results:{
+            actual: 0,
+            total: 0
+        },
+        serverClone : []
     }
 
+    //GET SERVER MOVIES
+    getServer = async () => {
+        let result = await getData(process.env.REACT_APP_CLONE_URL_OFFLINE, 'movies', null, null, null)
+    }
+
+    //SEARCH INPUT
     search = async (e) =>{
         let newSearch = e.currentTarget.value
         this.setState({search : newSearch})
         if(e.keyCode === 13 || e.key === "Enter"){
             let result = await getOmdb(process.env.REACT_APP_OMDB_URL, process.env.REACT_APP_OMDB_API_KEY, 's', this.state.search, this.state.pageFetch)
-            this.setState({movies : result})
-            console.log(result)
+            this.setState({movies : result.result, results : {actual : 10, total : result.total}})
+            // console.log(result.result, result.total)
         }
         else{
             this.setState({search : newSearch})
         }
     }
 
+    //MOVIE
     selectMovie = async (data) => {
         // console.log(data.imdbID)
         let result = await getOmdb(process.env.REACT_APP_OMDB_URL, process.env.REACT_APP_OMDB_API_KEY, 'i', data.imdbID, null)
         // console.log(result)
-        this.setState({moviesSelected : [...this.state.moviesSelected, result] })
+        this.setState({selMovie : result })
     }
 
-    checkMovie = async (e, data) => {
-        e.currentTarget.checked === true
-        ? console.log(e.currentTarget.id, data)
-        : console.log('No movie Selected', e.currentTarget.checked)
+    //ADD BUTTON
+    addList = async (data) => {
+        let list = [...this.state.moviesSelected],
+            checkList = list.findIndex( movie => movie.imdbID === data.imdbID)
+        if (checkList === -1) {
+            let result = await getOmdb(process.env.REACT_APP_OMDB_URL, process.env.REACT_APP_OMDB_API_KEY, 'i', data.imdbID, null)
+            // console.log(result)
+            this.setState({moviesSelected : [...this.state.moviesSelected, result] })
+        } else {
+            window.alert('Already added')
+        }
     }
 
+    //REMOVE BUTTON
+    removeList = (data) => {
+        let array = [...this.state.moviesSelected],
+            removeList = array.filter( movie => movie.imdbID !== data.imdbID)
+        this.setState({moviesSelected : removeList})
+    }
+
+    //POST MOVIE
     postMovies = async () => {
         this.state.moviesSelected.map(async (movie) => {
-            let image = document.getElementById(movie.imdbID + ' image')
             let result = await postData(process.env.REACT_APP_CLONE_URL_OFFLINE, 'movies', null, false, movie)
-            let imageUpload = await postData(process.env.REACT_APP_CLONE_URL_OFFLINE, 'movies', movie.imdbID, true, image.files)
-            console.log(result, imageUpload)
+            console.log(result)
         })
     }
 
-    postCover = async (id, image) => {
-        let result = await postData(process.env.REACT_APP_CLONE_URL_OFFLINE, 'movies', id, true, image)
-        return result
-    }
-
+    //NEXT BUTTON
     nextFetch = async () => {
-        this.setState({pageFetch : this.state.pageFetch +1})
+        await this.setState({pageFetch : this.state.pageFetch +1})
         let result = await getOmdb(process.env.REACT_APP_OMDB_URL, process.env.REACT_APP_OMDB_API_KEY, 's', this.state.search, this.state.pageFetch)
-        this.setState({movies : result})
+        this.setState({movies : result.result, results:{actual : this.state.results.actual + 10, total : this.state.results.total}})
     }
 
+    //PREVIOUS BUTTON
     prevFetch = async () => {
-        this.setState({pageFetch : this.state.pageFetch -1})
+        await this.setState({pageFetch : this.state.pageFetch -1})
         let result = await getOmdb(process.env.REACT_APP_OMDB_URL, process.env.REACT_APP_OMDB_API_KEY, 's', this.state.search, this.state.pageFetch)
-        this.setState({movies : result})
+        this.setState({movies : result.result, results:{actual : this.state.results.actual - 10, total : this.state.results.total}})
     }
 
-    componentDidMount = async () => {
+    componentDidMount(){
+        this.getServer()
     }
 
     render() {
@@ -83,7 +109,13 @@ export default class BackOffice extends PureComponent {
                    <h1>Strive</h1>
                </div>
                <input type="text" id='search-omdb' placeholder='Search...' onChange={this.search} onKeyDown={this.search}/>
-               <BackGallery list={this.state.movies}/>
+               <p className= 'results'>{this.state.results.actual} of {this.state.results.total}</p>
+               <div className="page-btns">
+                <button className='prev-btn' onClick={()=>this.prevFetch()}>Previous</button> <button className='next-btn' onClick={()=>this.nextFetch()}>Next</button>
+               </div>
+               <BackGallery list={this.state.movies} chooseMovie={this.selectMovie}/>
+               <MovieDetails movie={this.state.selMovie} rate={this.state.selMovie.imdbRating} add={this.addList}/>
+               <AddedList movieList={this.state.moviesSelected} remove={this.removeList} confirm={this.postMovies}/>
             </div>
         )
     }

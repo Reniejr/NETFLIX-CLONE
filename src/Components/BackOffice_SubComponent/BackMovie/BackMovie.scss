@@ -4,8 +4,8 @@
 @import '../../__STYLE_SCSS/Animations';
 .back-movie{
     @include transition(transform, .5s, ease);
-    width: 8%;
-    height: 100%;
+    max-width: 250px;
+    height: 350px;
     position: relative;
     background-size: cover;
     background-position: center center;

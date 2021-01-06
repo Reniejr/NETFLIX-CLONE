@@ -8,7 +8,10 @@ export const getOmdb = async (baseUrl, auth, param, search, page) =>{
         result = await response.json(),
         data;
     page !== null
-    ? data = result.Search
+    ? data = {
+        result : result.Search,
+        total : result.totalResults
+    }
     : data = result
     // console.log(url, data)
     return data
@@ -22,7 +25,7 @@ export const getData = async (baseUrl, field, id, filter, filterValue) => {
     : url=`${baseUrl}${field}/${id}`
     let response = await fetch(url),
         result = await response.json()
-    console.log(result)
+    // console.log(result)
     return result
 }
 
@@ -52,6 +55,6 @@ export const postData = async (baseUrl, field, id, images, body) => {
         })
     }
     let result = await response.json()
-    console.log(result)
+    // console.log(result)
     return result
 }

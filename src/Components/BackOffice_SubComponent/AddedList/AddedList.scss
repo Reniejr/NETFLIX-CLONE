@@ -1,0 +1,102 @@
+@import '../../__STYLE_SCSS/Compatibilities';
+@import '../../__STYLE_SCSS/Positions';
+.added-list{
+    @include transition(margin-right, 1s, ease);
+    position: absolute;
+    top: 0;
+    right: 0;
+    width: 400px;
+    min-height: 100vh;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    z-index: 100;
+    background-color: black;
+    color: white;
+    padding: 1rem 0;
+    overflow: visible;
+    .confirm-btn{
+        padding: 5px 10px;
+        @include borderRadius(5px);
+        border: none;
+        background-color: rgb(0, 219, 18);
+        color: white;
+        margin-left: 1rem;
+        margin-bottom: 1rem;
+    }
+    .toggle{
+        content: ' ';
+        background-color: inherit;
+        width: 20px;
+        height: 100px;
+        position: absolute;
+        left: -20px;
+        top: 50%;
+        @include translate(0, -50%);
+        border-bottom-left-radius: 20px;
+        border-top-left-radius: 20px;
+        border-top: 1px solid rgba($color: white, $alpha: .5);
+        border-left: 1px solid rgba($color: white, $alpha: .5);
+        border-bottom: 1px solid rgba($color: white, $alpha: .5);
+    }
+    .list{
+        width: 100%;
+        height: 100%;
+        overflow-y: auto;
+        p{
+            text-align: center;
+        }
+        .add-movie{
+            width: 250px;
+            height: 400px;
+            position: relative;
+            background-size: cover;
+            background-position: center center;
+            border: 1px solid rgba($color: white, $alpha: .5);
+            margin: 0 auto;
+            margin-bottom: 1rem;
+            &:hover{
+                .remove-btn{
+                    opacity: 1;
+                }
+            }
+            .remove-btn{
+                @include absolutePosition(50%, none, none, 50%, -50%, -50%);
+                @include borderRadius(5px);
+                @include transition(opacity, .5s, ease);
+                padding: 5px 10px;
+                background-color: red;
+                color: white;
+                font-weight: 600;
+                border: none;
+                opacity: 0;
+            }
+            .title{
+                width: 100%;
+                height: 25%;
+                position: absolute;
+                bottom: 0;
+                white-space: nowrap;
+                overflow: hidden;
+                &:hover{
+                    overflow: visible;
+                }
+                .glass{
+                    width: 100%;
+                    height: 100%;
+                    background-color: rgba($color: white, $alpha: .09);           
+                    -webkit-backdrop-filter: blur(20px) brightness(120%);
+                    backdrop-filter: blur(20px) brightness(120%);
+                }
+                p{
+                    @include absolutePosition(50%, none, none, 10%, 0, -50%);
+                    margin: 0;
+                    font-size: 1.5vw;
+                    color: white;
+                    font-weight: 600;
+                }
+            }
+        }
+    }
+}

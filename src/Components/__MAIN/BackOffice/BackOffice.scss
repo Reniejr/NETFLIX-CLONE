@@ -3,6 +3,8 @@
 #back-office{
     background-color: #090909;
     overflow: hidden;
+    position: relative;
+    z-index: 1;
     .header{
         margin-top: 48px;
         padding: 1rem;
@@ -32,5 +34,25 @@
         border: none;
         padding: .5rem 1rem;
     }
-    
+    .results{
+        text-align: center;
+        color: white;
+    }
+    .page-btns{
+        width: 100%;
+        display: flex;
+        justify-content: center;
+        margin-bottom: 1rem;
+        button{
+            @include borderRadius(5px);
+            width: 100px;
+            margin: 0 1rem;
+            background-color: transparent;
+            border: 1px solid white;
+            color: white;
+            &:hover{
+                background-color: rgba($color: white, $alpha: .1);
+            }
+        }
+    }
 }
