@@ -1,0 +1,29 @@
+//FLOAT
+@keyframes float{
+    0%{margin-top: initial;}
+    50%{margin-top: -10px;}
+    100%{margin-top: initial;}
+}
+@mixin floating($duration, $iteration){
+    animation: float $duration $iteration;
+    -webkit-animation: float $duration $iteration;
+}
+
+
+//SHINE
+@keyframes shine{
+    0%{}
+    50%{box-shadow: 0 0 20px rgba($color: white, $alpha: 1);}
+    100%{}
+}
+@mixin shining($duration, $iteration){
+    animation: shine $duration $iteration;
+    -webkit-animation: shine $duration $iteration;
+}
+
+
+//CARD SELECTED
+@mixin cardSelected($duration, $iteration){
+    animation: float $duration $iteration, shine $duration $iteration;
+    -webkit-animation: float $duration $iteration, shine $duration $iteration;
+}

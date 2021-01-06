@@ -21,3 +21,11 @@
     -ms-transition: $property $duration $style;
     -o-transition: $property $duration $style;
 }
+
+@mixin scale($value){
+    transform: scale($value);
+    -webkit-transform: scale($value);
+    -moz-transform: scale($value);
+    -ms-transform: scale($value);
+    -o-transform: scale($value);
+}
