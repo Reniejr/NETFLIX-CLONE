@@ -1,4 +1,5 @@
 import React, { PureComponent } from 'react'
+import {Alert} from 'react-bootstrap'
 
 //STYLE
 import './MovieDetails.scss'
@@ -6,14 +7,19 @@ import './MovieDetails.scss'
 export default class MovieDetails extends PureComponent {
 
     state={
-        rate:0,
-        color:''
+        rate: 0,
+        color: '',
+        alert: false
     }
 
     addList = (data) => {
         this.props.add(data)
+        this.setState({alert : true})
+        setTimeout(()=>{this.setState({alert : false})}, 1000)
         // console.log(data)
     }
+
+
     
     componentDidUpdate = (prevProps, prevState) => {
         let colore = '',
@@ -40,26 +46,33 @@ export default class MovieDetails extends PureComponent {
         ? movie = {Title: '', imdbID: '', Year: '', Runtime: '', Genre: '', Director: '', Actors: '', Production: '', imdbRating: '', Plot: ''}
         : movie = {...this.props.movie}
         return (
-            <div className='movie-details'>
-                <div className="title">
-                    <h2>{movie.Title}</h2><span>{movie.imdbID}</span> <button onClick={()=>this.addList(movie)}>Add</button>
+            <>
+                <div className="alert-focus" style={{display : this.state.alert? 'block' : 'none'}}>
+                    <Alert variant='success' >
+                        Movie added (Check the added list)
+                    </Alert>
                 </div>
-                <div className="date-time">
-                    <span>{movie.Year}</span><span>{movie.Runtime}</span>
+                <div className='movie-details'>
+                    <div className="title">
+                        <h2>{movie.Title}</h2><span>{movie.imdbID}</span> <button onClick={()=>this.addList(movie)}>Add</button>
+                    </div>
+                    <div className="date-time">
+                        <span>{movie.Year}</span><span>{movie.Runtime}</span>
+                    </div>
+                    <p className='Genre'>Genre : {movie.Genre}</p>
+                    <p className='description'>
+                        Director : {movie.Director}<br/>
+                        Actors : {movie.Actors}<br/>
+                        Production : {movie.Production}
+                    </p>
+                    <div className="rate">
+                        <span>imdb Rating : </span><span style={{backgroundColor : this.state.color}}>{movie.imdbRating}</span>
+                    </div>
+                    <p className='plot'>
+                        {movie.Plot}
+                    </p>
                 </div>
-                <p className='Genre'>Genre : {movie.Genre}</p>
-                <p className='description'>
-                    Director : {movie.Director}<br/>
-                    Actors : {movie.Actors}<br/>
-                    Production : {movie.Production}
-                </p>
-                <div className="rate">
-                    <span>imdb Rating : </span><span style={{backgroundColor : this.state.color}}>{movie.imdbRating}</span>
-                </div>
-                <p className='plot'>
-                    {movie.Plot}
-                </p>
-            </div>
+            </>
         )
     }
 }

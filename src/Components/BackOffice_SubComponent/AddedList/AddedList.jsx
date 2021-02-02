@@ -42,6 +42,8 @@ export default class AddedList extends PureComponent {
                                     <div className="glass"></div>
                                     <p>{movie.Title}</p>
                                 </div>
+                                <div className="preview-images">
+                                </div>
                             </div>
                         )
                     })
